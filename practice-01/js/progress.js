@@ -3,7 +3,7 @@
 const totalTasks = 9;
 const completedTasks = 9;
 
-// Проверяем, что ввели именно числа и именно целые
+
 const isNumber = typeof totalTasks === "number" && typeof completedTasks === "number";
 const isInteger = Number.isInteger(totalTasks) && Number.isInteger(completedTasks);
 const isNotNaN = !Number.isNaN(totalTasks) && !Number.isNaN(completedTasks);
