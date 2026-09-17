@@ -4,8 +4,7 @@
     <list default="true" id="50b46bd0-957a-438a-bd7c-d125d6aa8119" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/practice-01/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/practice-01/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice-01/js/hello.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-01/js/hello.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice-01/js/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-01/js/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-01/js/progress.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-01/js/progress.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +26,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Node.js.hello.js.executor": "Run",
+    "Node.js.progress.js.executor": "Run",
     "Node.js.types.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -40,8 +40,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Node.js.types.js">
+  <component name="RunManager" selected="Node.js.progress.js">
     <configuration name="hello.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/practice-01/js/hello.js" working-dir="$PROJECT_DIR$/practice-01/js">
+      <method v="2" />
+    </configuration>
+    <configuration name="progress.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/practice-01/js/progress.js" working-dir="$PROJECT_DIR$/practice-01/js">
       <method v="2" />
     </configuration>
     <configuration name="types.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/practice-01/js/types.js" working-dir="$PROJECT_DIR$/practice-01/js">
@@ -49,6 +52,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.progress.js" />
         <item itemvalue="Node.js.types.js" />
         <item itemvalue="Node.js.hello.js" />
       </list>
@@ -72,7 +76,7 @@
       <workItem from="1789661699634" duration="185000" />
       <workItem from="1789661895646" duration="190000" />
       <workItem from="1789662102653" duration="18000" />
-      <workItem from="1789662122006" duration="2230000" />
+      <workItem from="1789662122006" duration="2835000" />
     </task>
     <servers />
   </component>
