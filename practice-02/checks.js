@@ -1,6 +1,6 @@
-// Готовый проверочный сценарий. Установка пакетов не требуется.
-// В этом файле нет реализации функций task-service.js.
-// Первоначально проверки не проходят: функции в заготовке ещё не реализованы.
+//Готовый проверочный сценарий. Установка пакетов не требуется.
+//В этом файле нет реализации функций task-service.js.
+//Первоначально проверки не проходят: функции в заготовке ещё не реализованы.
 import assert from "node:assert/strict";
 import {
   createTask, findTaskById, getPendingTasks, getTaskTitles, getTaskStats,
@@ -22,7 +22,7 @@ function check(name, action) {
   }
 }
 
-// Каждый вызов создаёт новый независимый набор данных.
+//Каждый вызов создаёт новый независимый набор данных.
 function fixture() {
   return [
     { id: 1, title: "Изучить функции", completed: true, priority: "medium" },
@@ -354,6 +354,51 @@ check("35. Работа с другим набором, без зависимо�
 //   const result = ...;
 //   assert.deepEqual(result, ...);
 // });
+
+check("Собственный случай: добавление после удаления", () => {
+  const tasks = fixture();
+
+  const withoutFour = expectTasks(removeTask(tasks, 4));
+  const result = expectTasks(
+      addTask(withoutFour, 4, "Вернуть задачу", "medium")
+  );
+
+  assert.deepEqual(result.map((task) => task.id), [1, 7, 10, 4]);
+  assert.equal(result[3].title, "Вернуть задачу");
+  assert.deepEqual(tasks, fixture());
+});
+
+check("Собственный случай: изменение первой и последней задачи", () => {
+  const tasks = fixture();
+
+  let current = expectTasks(setTaskCompleted(tasks, 1, false));
+  current = expectTasks(renameTask(current, 10, "Новое название"));
+
+  assert.equal(current[0].completed, false);
+  assert.equal(current[3].title, "Новое название");
+  assert.equal(current[0].priority, "medium");
+  assert.equal(current[3].completed, true);
+  assert.deepEqual(tasks, fixture());
+});
+
+check("Собственный случай: несколько изменений подряд", () => {
+  const tasks = [
+    { id: 50, title: "Первая задача", completed: false, priority: "low" },
+    { id: 60, title: "Вторая задача", completed: false, priority: "high" },
+  ];
+
+  const before = copyTasks(tasks);
+
+  let current = expectTasks(setTaskCompleted(tasks, 50, true));
+  current = expectTasks(renameTask(current, 60, "Обновленная задача"));
+
+  assert.deepEqual(current, [
+    { id: 50, title: "Первая задача", completed: true, priority: "low" },
+    { id: 60, title: "Обновленная задача", completed: false, priority: "high" },
+  ]);
+
+  assert.deepEqual(tasks, before);
+});
 
 console.log(`\nПроверок пройдено: ${passed}; не пройдено: ${failed}.`);
 if (failed > 0) {

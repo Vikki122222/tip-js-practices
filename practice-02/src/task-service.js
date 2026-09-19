@@ -1,50 +1,66 @@
-// Заготовка модуля. throw ниже отмечает отсутствие реализации,
-// а не способ обработки некорректных данных в готовом решении.
-// Для предусмотренных ошибок необходимо возвращать { ok: false, error: "..." }.
-// console.log(), prompt(), document и чтение внешнего состояния здесь не нужны.
-
 export function createTask(id, title, priority = "medium") {
-  // TODO: проверить поля и вернуть результат создания задачи.
-  throw new Error("Не реализовано: createTask");
+  if (!Number.isSafeInteger(id) || id <= 0) return { ok: false, error: "Некорректный ID" };
+  if (typeof title !== "string") return { ok: false, error: "Название должно быть строкой" };
+
+  const cleanTitle = title.trim();
+  if (cleanTitle.length < 1 || cleanTitle.length > 100) return { ok: false, error: "Некорректная длина" };
+  if (!["low", "medium", "high"].includes(priority)) return { ok: false, error: "Неверный приоритет" };
+
+  return { ok: true, task: { id, title: cleanTitle, completed: false, priority } };
 }
 
 export function findTaskById(tasks, id) {
-  // TODO: найти задачу с помощью find(); отсутствие результата — undefined.
-  throw new Error("Не реализовано: findTaskById");
+  return tasks.find(task => task.id === id);
 }
 
 export function getPendingTasks(tasks) {
-  // TODO: вернуть новый массив невыполненных задач с помощью filter().
-  throw new Error("Не реализовано: getPendingTasks");
+  return tasks.filter(task => task.completed === false);
 }
 
 export function getTaskTitles(tasks) {
-  // TODO: вернуть массив названий с помощью map().
-  throw new Error("Не реализовано: getTaskTitles");
+  return tasks.map(task => task.title);
 }
 
 export function getTaskStats(tasks) {
-  // TODO: вернуть { total, completed, pending, progress }.
-  throw new Error("Не реализовано: getTaskStats");
+  const total = tasks.length;
+  const completed = tasks.filter(t => t.completed === true).length;
+  const pending = total - completed;
+  const progress = total > 0 ? (completed / total) * 100 : 0;
+  return { total, completed, pending, progress };
 }
 
 export function addTask(tasks, id, title, priority = "medium") {
-  // TODO: проверить данные через createTask(), исключить дублирование id,
-  // вернуть { ok: true, tasks: новыйМассив } без изменения исходного массива.
-  throw new Error("Не реализовано: addTask");
+  if (!Number.isSafeInteger(id) || id <= 0) return { ok: false, error: "Некорректный ID" };
+  if (findTaskById(tasks, id)) return { ok: false, error: "ID уже существует" };
+
+  const res = createTask(id, title, priority);
+  if (!res.ok) return res;
+
+  return { ok: true, tasks: [...tasks, res.task] };
 }
 
 export function setTaskCompleted(tasks, id, completed) {
-  // TODO: проверить id и completed, найти задачу, создать обновлённые данные.
-  throw new Error("Не реализовано: setTaskCompleted");
+  if (!Number.isSafeInteger(id) || id <= 0) return { ok: false, error: "Некорректный ID" };
+  if (typeof completed !== "boolean") return { ok: false, error: "Статус должен быть boolean" };
+  if (!findTaskById(tasks, id)) return { ok: false, error: "Задача не найдена" };
+
+  return { ok: true, tasks: tasks.map(t => t.id === id ? { ...t, completed } : t) };
 }
 
 export function renameTask(tasks, id, title) {
-  // TODO: проверить id и title, изменить только название выбранной задачи.
-  throw new Error("Не реализовано: renameTask");
+  if (!Number.isSafeInteger(id) || id <= 0) return { ok: false, error: "Некорректный ID" };
+  const task = findTaskById(tasks, id);
+  if (!task) return { ok: false, error: "Задача не найдена" };
+
+  const dummy = createTask(id, title, task.priority);
+  if (!dummy.ok) return dummy;
+
+  return { ok: true, tasks: tasks.map(t => t.id === id ? { ...t, title: dummy.task.title } : t) };
 }
 
 export function removeTask(tasks, id) {
-  // TODO: проверить id, обработать отсутствие задачи, вернуть новый массив.
-  throw new Error("Не реализовано: removeTask");
+  if (!Number.isSafeInteger(id) || id <= 0) return { ok: false, error: "Некорректный ID" };
+  if (!findTaskById(tasks, id)) return { ok: false, error: "Задача не найдена" };
+
+  return { ok: true, tasks: tasks.filter(t => t.id !== id) };
 }
