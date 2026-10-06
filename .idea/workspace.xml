@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50b46bd0-957a-438a-bd7c-d125d6aa8119" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/practice-02/control-task-2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practice-02/control-task-3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-01/js/progress.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-01/js/progress.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-02/src/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-02/src/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-02/src/task-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-02/src/task-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-03/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/practice-03/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-03/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-03/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-03/src/task-selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-03/src/task-selectors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practice-03/src/task-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/practice-03/src/task-view.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +107,8 @@
       <workItem from="1789905043493" duration="301000" />
       <workItem from="1790256245034" duration="25000" />
       <workItem from="1791234940901" duration="5724000" />
+      <workItem from="1791295202302" duration="41000" />
+      <workItem from="1791319539918" duration="3298000" />
     </task>
     <servers />
   </component>
