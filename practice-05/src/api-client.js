@@ -121,6 +121,10 @@ export function createApiClient({
     const isJson = contentType.split(";", 1)[0].trim().toLowerCase() === "application/json";
 
     // Приоритет HTTP-статуса сохраняется даже при HTML или повреждённом теле ошибки.
+    // fetch не считает HTTP-статусы 404 и 500 сетевой ошибкой.
+    // Поэтому самостоятельно проверяем свойство response.ok.
+    // Если ответ неуспешный, создаём ApiError с kind "http"
+    // и сохраняем HTTP-статус для дальнейшей обработки.
     if (!response.ok) {
       let payload = null;
       let bodyError;
