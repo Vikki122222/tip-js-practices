@@ -1,0 +1,34 @@
+{
+  "previous_files_compared": 112,
+  "previous_files_changed": [],
+  "unchanged_provided_files": [
+    ".gitignore",
+    "api/data.js",
+    "api/server.mjs",
+    "tools/start.mjs",
+    "tools/static-server.mjs",
+    "checks/api-server.checks.js",
+    "checks/modules.checks.js",
+    "checks/integration.checks.js",
+    "checks.html",
+    "src/main.js",
+    "styles.css"
+  ],
+  "browser_check_change": "Одно условие ожидания requireNode -> querySelector; все проверки результата сохранены.",
+  "syntax_check": "All JS/MJS passed node --check",
+  "readme_local_links": "all exist",
+  "src_stubs": 0,
+  "node_checks": {
+    "api": 23,
+    "modules": 33,
+    "integration": 14,
+    "own": 14
+  },
+  "dom_emulation": {
+    "environment": "Happy DOM 21.0.4 with real HTTP API",
+    "checks": 14,
+    "failed": 0,
+    "extra_scenarios": 12
+  },
+  "real_browser": "not executed; environment cannot launch native browser or reach local API from remote browser"
+}

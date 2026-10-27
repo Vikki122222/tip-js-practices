@@ -1,0 +1,967 @@
+{
+  "environment": "Node.js v24.22.1 + Happy DOM 21.0.4 + предоставленный HTTP API; не реальный браузер",
+  "scenarios": [
+    {
+      "name": "Вариант 3: изменение high на medium исключает карточку",
+      "passed": true,
+      "actual": {
+        "initialRequest": "GET /api/tasks?priority=high",
+        "before": [
+          4,
+          13,
+          16,
+          25,
+          34
+        ],
+        "taskId": 4,
+        "priority": "medium",
+        "completed": false,
+        "after": [
+          13,
+          16,
+          25,
+          34
+        ],
+        "total": 4
+      }
+    },
+    {
+      "name": "Пустая выборка удаляет карточки и показывает empty",
+      "passed": true,
+      "actual": {
+        "state": "empty",
+        "ids": [],
+        "total": "0"
+      }
+    },
+    {
+      "name": "Неверная форма показывает ошибки без POST",
+      "passed": true,
+      "actual": {
+        "postRequests": 0,
+        "ariaInvalid": "true",
+        "total": 12
+      }
+    },
+    {
+      "name": "Создание и обновление страницы сохраняют серверную задачу",
+      "passed": true,
+      "actual": {
+        "id": 35,
+        "title": "Задача ПР6",
+        "totalAfterReload": 13
+      }
+    },
+    {
+      "name": "Редактирование сохраняет completed у выполненной задачи",
+      "passed": true,
+      "actual": {
+        "id": 16,
+        "title": "Учебный API проверен",
+        "completed": true
+      }
+    },
+    {
+      "name": "Смена статуса удаляет задачу из completed=false",
+      "passed": true,
+      "actual": {
+        "id": 4,
+        "completed": true,
+        "visibleIds": [
+          7,
+          13,
+          19,
+          22,
+          28,
+          34
+        ],
+        "total": 6
+      }
+    },
+    {
+      "name": "Отмена подтверждения удаления не отправляет DELETE",
+      "passed": true,
+      "actual": {
+        "deleteRequests": 0,
+        "task7StillPresent": true
+      }
+    },
+    {
+      "name": "Reset восстанавливает набор после подтверждённого удаления",
+      "passed": true,
+      "actual": {
+        "total": 12,
+        "restoredIds": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34
+        ]
+      }
+    },
+    {
+      "name": "Вывод длительности загрузки — дополнительное задание 5",
+      "passed": true,
+      "actual": {
+        "duration": "7.1 мс"
+      }
+    },
+    {
+      "name": "Недоступный API и повтор после его запуска",
+      "passed": true,
+      "actual": {
+        "before": "error",
+        "error": "Нет соединения с учебным API. Проверьте, запущен ли npm start.",
+        "after": "ready",
+        "total": 12,
+        "categories": 3
+      }
+    },
+    {
+      "name": "Перезапуск API сбрасывает созданную задачу",
+      "passed": true,
+      "actual": {
+        "beforeRestart": 13,
+        "afterRestart": 12,
+        "task35Present": false
+      }
+    },
+    {
+      "name": "Быстрые фильтры с задержками 200/20 мс применяют последний ответ",
+      "passed": true,
+      "actual": {
+        "delaysMs": [
+          200,
+          20
+        ],
+        "previousRequestCancelled": true,
+        "finalPriority": "high",
+        "finalIds": [
+          4,
+          13,
+          16,
+          25,
+          34
+        ],
+        "duration": "38.1 мс",
+        "staleResultIgnored": true
+      }
+    }
+  ],
+  "passed": 12,
+  "failed": 0,
+  "requests": [
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?completed=false&priority=high&categoryId=2"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?completed=false&priority=high&categoryId=2"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?q=%D1%82%D0%B0%D0%BA%D0%BE%D0%B9+%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8+%D1%82%D0%BE%D1%87%D0%BD%D0%BE+%D0%BD%D0%B5%D1%82"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?q=%D1%82%D0%B0%D0%BA%D0%BE%D0%B9+%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8+%D1%82%D0%BE%D1%87%D0%BD%D0%BE+%D0%BD%D0%B5%D1%82"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "POST",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?priority=high"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?priority=high"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?priority=high"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?priority=high"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?q=%D0%BD%D0%B5%D1%81%D1%83%D1%89%D0%B5%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%89%D0%B0%D1%8F-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B0-%D0%BF%D1%806"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?q=%D0%BD%D0%B5%D1%81%D1%83%D1%89%D0%B5%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%89%D0%B0%D1%8F-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B0-%D0%BF%D1%806"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "POST",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/16"
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tasks/16"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks/16"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?completed=false"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?completed=false"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?completed=false"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?completed=false"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks/4"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "DELETE",
+      "url": "/api/tasks/7"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "POST",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "POST",
+      "url": "/api/debug/reset"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/categories"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks"
+    },
+    {
+      "method": "GET",
+      "url": "/api/categories"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?priority=low"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?priority=low"
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/api/tasks?priority=high"
+    },
+    {
+      "method": "GET",
+      "url": "/api/tasks?priority=high"
+    }
+  ]
+}

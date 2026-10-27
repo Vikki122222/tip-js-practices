@@ -1,0 +1,32 @@
+(node:4) ExperimentalWarning: Frozen intristics is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Среда: Happy DOM 21.0.4 (эмуляция DOM в Node.js, не настоящий браузер).
+OK: Карточка содержит безопасный текст и три действия
+OK: Повторная отрисовка списка не накапливает карточки
+OK: Начальная загрузка показывает 12 задач и 3 категории
+OK: Фильтры формируют новый серверный запрос
+OK: Поиск без результатов показывает empty, а сброс возвращает список
+OK: Корректная форма создаёт задачу с серверным id
+OK: Ошибки формы не отправляют запрос и связаны с полями
+OK: Редактирование заполняет форму и сохраняет изменения
+OK: Отмена редактирования возвращает режим создания
+OK: Смена статуса подтверждается сервером
+OK: Удаление подтверждается и сохраняется на сервере
+OK: Сброс восстанавливает учебный набор
+OK: Недоступный API показывает error и кнопку повтора
+OK: Приложение не использует localStorage как источник данных
+
+Всего: 14. Пройдено: 14. Ошибок: 0.
+
+OK: Вариант 3: изменение high на medium исключает карточку {"initialRequest":"GET /api/tasks?priority=high","before":[4,13,16,25,34],"taskId":4,"priority":"medium","completed":false,"after":[13,16,25,34],"total":4}
+OK: Пустая выборка удаляет карточки и показывает empty {"state":"empty","ids":[],"total":"0"}
+OK: Неверная форма показывает ошибки без POST {"postRequests":0,"ariaInvalid":"true","total":12}
+OK: Создание и обновление страницы сохраняют серверную задачу {"id":35,"title":"Задача ПР6","totalAfterReload":13}
+OK: Редактирование сохраняет completed у выполненной задачи {"id":16,"title":"Учебный API проверен","completed":true}
+OK: Смена статуса удаляет задачу из completed=false {"id":4,"completed":true,"visibleIds":[7,13,19,22,28,34],"total":6}
+OK: Отмена подтверждения удаления не отправляет DELETE {"deleteRequests":0,"task7StillPresent":true}
+OK: Reset восстанавливает набор после подтверждённого удаления {"total":12,"restoredIds":[1,4,7,10,13,16,19,22,25,28,31,34]}
+OK: Вывод длительности загрузки — дополнительное задание 5 {"duration":"7.1 мс"}
+OK: Недоступный API и повтор после его запуска {"before":"error","error":"Нет соединения с учебным API. Проверьте, запущен ли npm start.","after":"ready","total":12,"categories":3}
+OK: Перезапуск API сбрасывает созданную задачу {"beforeRestart":13,"afterRestart":12,"task35Present":false}
+OK: Быстрые фильтры с задержками 200/20 мс применяют последний ответ {"delaysMs":[200,20],"previousRequestCancelled":true,"finalPriority":"high","finalIds":[4,13,16,25,34],"duration":"38.1 мс","staleResultIgnored":true}
