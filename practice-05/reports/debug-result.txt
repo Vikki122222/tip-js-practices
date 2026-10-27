@@ -1,0 +1,3 @@
+SUCCESS_PAYLOAD {"id":25,"title":"Исправить обработку ошибок","completed":true,"priority":"high","categoryId":2}
+HTTP_ERROR {"kind":"http","status":404,"code":"TASK_NOT_FOUND","details":{"id":999},"url":"http://127.0.0.1:40231/api/tasks/999"}
+DEBUG_TARGET_DONE

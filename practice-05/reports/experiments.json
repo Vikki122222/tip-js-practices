@@ -1,0 +1,437 @@
+{
+  "baseUrl": "http://127.0.0.1:46015/api",
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "http": [
+    {
+      "path": "/health",
+      "url": "http://127.0.0.1:46015/api/health",
+      "method": "GET",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "payload": {
+        "data": {
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "path": "/tasks",
+      "url": "http://127.0.0.1:46015/api/tasks",
+      "method": "GET",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "payload": {
+        "data": [
+          {
+            "id": 1,
+            "title": "Изучить функции",
+            "completed": true,
+            "priority": "medium",
+            "categoryId": 1
+          },
+          {
+            "id": 4,
+            "title": "Подготовить модель задач",
+            "completed": false,
+            "priority": "high",
+            "categoryId": 2
+          },
+          {
+            "id": 7,
+            "title": "Проверить методы массивов",
+            "completed": false,
+            "priority": "low",
+            "categoryId": 1
+          },
+          {
+            "id": 10,
+            "title": "Оформить README",
+            "completed": true,
+            "priority": "medium",
+            "categoryId": 3
+          },
+          {
+            "id": 13,
+            "title": "Разобрать Promise",
+            "completed": false,
+            "priority": "high",
+            "categoryId": 1
+          },
+          {
+            "id": 16,
+            "title": "Проверить учебный API",
+            "completed": true,
+            "priority": "high",
+            "categoryId": 2
+          },
+          {
+            "id": 19,
+            "title": "Описать контракт запросов",
+            "completed": false,
+            "priority": "medium",
+            "categoryId": 3
+          },
+          {
+            "id": 22,
+            "title": "Подготовить демонстрацию",
+            "completed": false,
+            "priority": "low",
+            "categoryId": 2
+          },
+          {
+            "id": 25,
+            "title": "Исправить обработку ошибок",
+            "completed": true,
+            "priority": "high",
+            "categoryId": 2
+          },
+          {
+            "id": 28,
+            "title": "Добавить фильтры API",
+            "completed": false,
+            "priority": "medium",
+            "categoryId": 2
+          },
+          {
+            "id": 31,
+            "title": "Сверить отчёт",
+            "completed": true,
+            "priority": "low",
+            "categoryId": 3
+          },
+          {
+            "id": 34,
+            "title": "Провести рефакторинг клиента",
+            "completed": false,
+            "priority": "high",
+            "categoryId": 2
+          }
+        ],
+        "meta": {
+          "total": 12,
+          "filters": {
+            "completed": null,
+            "priority": null,
+            "categoryId": null,
+            "q": ""
+          }
+        }
+      }
+    },
+    {
+      "path": "/tasks?completed=false&priority=high",
+      "url": "http://127.0.0.1:46015/api/tasks?completed=false&priority=high",
+      "method": "GET",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "payload": {
+        "data": [
+          {
+            "id": 4,
+            "title": "Подготовить модель задач",
+            "completed": false,
+            "priority": "high",
+            "categoryId": 2
+          },
+          {
+            "id": 13,
+            "title": "Разобрать Promise",
+            "completed": false,
+            "priority": "high",
+            "categoryId": 1
+          },
+          {
+            "id": 34,
+            "title": "Провести рефакторинг клиента",
+            "completed": false,
+            "priority": "high",
+            "categoryId": 2
+          }
+        ],
+        "meta": {
+          "total": 3,
+          "filters": {
+            "completed": false,
+            "priority": "high",
+            "categoryId": null,
+            "q": ""
+          }
+        }
+      }
+    },
+    {
+      "path": "/tasks/25",
+      "url": "http://127.0.0.1:46015/api/tasks/25",
+      "method": "GET",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "payload": {
+        "data": {
+          "id": 25,
+          "title": "Исправить обработку ошибок",
+          "completed": true,
+          "priority": "high",
+          "categoryId": 2
+        }
+      }
+    },
+    {
+      "path": "/tasks/999",
+      "url": "http://127.0.0.1:46015/api/tasks/999",
+      "method": "GET",
+      "status": 404,
+      "ok": false,
+      "contentType": "application/json; charset=utf-8",
+      "payload": {
+        "error": {
+          "code": "TASK_NOT_FOUND",
+          "message": "Задача с id 999 не найдена.",
+          "details": {
+            "id": 999
+          }
+        }
+      }
+    },
+    {
+      "path": "/categories",
+      "url": "http://127.0.0.1:46015/api/categories",
+      "method": "GET",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json; charset=utf-8",
+      "payload": {
+        "data": [
+          {
+            "id": 1,
+            "name": "Учёба"
+          },
+          {
+            "id": 2,
+            "name": "Проект"
+          },
+          {
+            "id": 3,
+            "name": "Организация"
+          }
+        ],
+        "meta": {
+          "total": 3
+        }
+      }
+    }
+  ],
+  "errors": {
+    "task999": {
+      "name": "ApiError",
+      "kind": "http",
+      "status": 404,
+      "code": "TASK_NOT_FOUND",
+      "details": {
+        "id": 999
+      },
+      "url": "http://127.0.0.1:46015/api/tasks/999",
+      "message": "Задача с id 999 не найдена.",
+      "cause": null
+    },
+    "invalidQuery": {
+      "name": "ApiError",
+      "kind": "http",
+      "status": 400,
+      "code": "INVALID_QUERY",
+      "details": null,
+      "url": "http://127.0.0.1:46015/api/tasks?completed=yes",
+      "message": "completed должен быть true или false.",
+      "cause": null
+    },
+    "serviceUnavailable": {
+      "name": "ApiError",
+      "kind": "http",
+      "status": 503,
+      "code": "SERVICE_UNAVAILABLE",
+      "details": null,
+      "url": "http://127.0.0.1:46015/api/debug/error",
+      "message": "Учебная имитация временной недоступности сервиса.",
+      "cause": null
+    },
+    "invalidJson": {
+      "name": "ApiError",
+      "kind": "invalid-response",
+      "status": null,
+      "code": null,
+      "details": null,
+      "url": "http://127.0.0.1:46015/api/debug/invalid-json",
+      "message": "Ответ содержит некорректный JSON.",
+      "cause": {
+        "name": "SyntaxError",
+        "message": "Unexpected end of JSON input"
+      }
+    },
+    "text": {
+      "name": "ApiError",
+      "kind": "invalid-response",
+      "status": null,
+      "code": null,
+      "details": null,
+      "url": "http://127.0.0.1:46015/api/debug/text",
+      "message": "Ожидался Content-Type application/json.",
+      "cause": null
+    },
+    "timeout": {
+      "name": "ApiError",
+      "kind": "timeout",
+      "status": null,
+      "code": null,
+      "details": null,
+      "url": "http://127.0.0.1:46015/api/debug/delay?ms=150",
+      "message": "Превышено время ожидания ответа.",
+      "cause": {
+        "name": "TimeoutError",
+        "message": "The operation was aborted due to timeout"
+      }
+    },
+    "aborted": {
+      "name": "ApiError",
+      "kind": "aborted",
+      "status": null,
+      "code": null,
+      "details": null,
+      "url": "http://127.0.0.1:46015/api/debug/delay?ms=150",
+      "message": "Запрос отменён вызывающим кодом.",
+      "cause": {
+        "name": "AbortError",
+        "message": "This operation was aborted"
+      }
+    },
+    "network": {
+      "name": "ApiError",
+      "kind": "network",
+      "status": null,
+      "code": null,
+      "details": null,
+      "url": "http://127.0.0.1:46015/api/health",
+      "message": "Не удалось получить ответ от сервера.",
+      "cause": {
+        "name": "TypeError",
+        "message": "fetch failed"
+      }
+    }
+  },
+  "timings": [
+    {
+      "trial": 1,
+      "sequentialMs": 308.098887,
+      "parallelMs": 152.858562
+    },
+    {
+      "trial": 2,
+      "sequentialMs": 304.9226990000001,
+      "parallelMs": 152.093437
+    },
+    {
+      "trial": 3,
+      "sequentialMs": 302.6559930000001,
+      "parallelMs": 153.26817699999992
+    }
+  ],
+  "exampleFetch": {
+    "exitCode": 0,
+    "stdout": "status: 200\nok: true\ncontent-type: application/json; charset=utf-8\nids: [ 4, 13, 34 ]\nmeta: {\n  total: 3,\n  filters: { completed: false, priority: 'high', categoryId: null, q: '' }\n}\n",
+    "stderr": ""
+  },
+  "domain": {
+    "allIds": [
+      1,
+      4,
+      7,
+      10,
+      13,
+      16,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34
+    ],
+    "general": {
+      "ids": [
+        4,
+        13,
+        34
+      ],
+      "meta": {
+        "total": 3,
+        "filters": {
+          "completed": false,
+          "priority": "high",
+          "categoryId": null,
+          "q": ""
+        }
+      },
+      "categories": [
+        {
+          "id": 1,
+          "name": "Учёба"
+        },
+        {
+          "id": 2,
+          "name": "Проект"
+        },
+        {
+          "id": 3,
+          "name": "Организация"
+        }
+      ]
+    },
+    "task25": {
+      "id": 25,
+      "title": "Исправить обработку ошибок",
+      "completed": true,
+      "priority": "high",
+      "categoryId": 2
+    },
+    "variant": {
+      "url": "http://127.0.0.1:46015/api/tasks?priority=high",
+      "ids": [
+        4,
+        13,
+        16,
+        25,
+        34
+      ],
+      "meta": {
+        "total": 5,
+        "filters": {
+          "completed": null,
+          "priority": "high",
+          "categoryId": null,
+          "q": ""
+        }
+      }
+    }
+  },
+  "consoleOnline": {
+    "exitCode": 0,
+    "stdout": "\nОбщий контрольный запрос\nURL: http://127.0.0.1:46015/api/tasks?completed=false&priority=high\nФильтры: { completed: false, priority: 'high', categoryId: null, q: '' }\nID: [4,13,34]\nПолучено задач: 3; время: 28.4 мс\n┌─────────┬────┬────────────────────────────────┬───────────┬──────────┬──────────┐\n│ (index) │ id │ title                          │ completed │ priority │ category │\n├─────────┼────┼────────────────────────────────┼───────────┼──────────┼──────────┤\n│ 0       │ 4  │ 'Подготовить модель задач'     │ false     │ 'high'   │ 'Проект' │\n│ 1       │ 13 │ 'Разобрать Promise'            │ false     │ 'high'   │ 'Учёба'  │\n│ 2       │ 34 │ 'Провести рефакторинг клиента' │ false     │ 'high'   │ 'Проект' │\n└─────────┴────┴────────────────────────────────┴───────────┴──────────┴──────────┘\nКатегории: [{\"id\":1,\"name\":\"Учёба\"},{\"id\":2,\"name\":\"Проект\"},{\"id\":3,\"name\":\"Организация\"}]\n\nИндивидуальный вариант 3\nURL: http://127.0.0.1:46015/api/tasks?priority=high\nФильтры: { completed: null, priority: 'high', categoryId: null, q: '' }\nID: [4,13,16,25,34]\nПолучено задач: 5; время: 3.6 мс\n┌─────────┬────┬────────────────────────────────┬───────────┬──────────┬──────────┐\n│ (index) │ id │ title                          │ completed │ priority │ category │\n├─────────┼────┼────────────────────────────────┼───────────┼──────────┼──────────┤\n│ 0       │ 4  │ 'Подготовить модель задач'     │ false     │ 'high'   │ 'Проект' │\n│ 1       │ 13 │ 'Разобрать Promise'            │ false     │ 'high'   │ 'Учёба'  │\n│ 2       │ 16 │ 'Проверить учебный API'        │ true      │ 'high'   │ 'Проект' │\n│ 3       │ 25 │ 'Исправить обработку ошибок'   │ true      │ 'high'   │ 'Проект' │\n│ 4       │ 34 │ 'Провести рефакторинг клиента' │ false     │ 'high'   │ 'Проект' │\n└─────────┴────┴────────────────────────────────┴───────────┴──────────┴──────────┘\nКатегории: [{\"id\":1,\"name\":\"Учёба\"},{\"id\":2,\"name\":\"Проект\"},{\"id\":3,\"name\":\"Организация\"}]\n\nКонтрольная ошибка 404: Тип: http · Задача с id 999 не найдена. · HTTP 404 · Код API: TASK_NOT_FOUND\n",
+    "stderr": ""
+  },
+  "consoleOffline": {
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "Тип: network · Не удалось получить ответ от сервера.\nПроверяемый адрес API: http://127.0.0.1:46015/api\n"
+  },
+  "consoleRestarted": {
+    "exitCode": 0,
+    "stdout": "\nОбщий контрольный запрос\nURL: http://127.0.0.1:46015/api/tasks?completed=false&priority=high\nФильтры: { completed: false, priority: 'high', categoryId: null, q: '' }\nID: [4,13,34]\nПолучено задач: 3; время: 27.8 мс\n┌─────────┬────┬────────────────────────────────┬───────────┬──────────┬──────────┐\n│ (index) │ id │ title                          │ completed │ priority │ category │\n├─────────┼────┼────────────────────────────────┼───────────┼──────────┼──────────┤\n│ 0       │ 4  │ 'Подготовить модель задач'     │ false     │ 'high'   │ 'Проект' │\n│ 1       │ 13 │ 'Разобрать Promise'            │ false     │ 'high'   │ 'Учёба'  │\n│ 2       │ 34 │ 'Провести рефакторинг клиента' │ false     │ 'high'   │ 'Проект' │\n└─────────┴────┴────────────────────────────────┴───────────┴──────────┴──────────┘\nКатегории: [{\"id\":1,\"name\":\"Учёба\"},{\"id\":2,\"name\":\"Проект\"},{\"id\":3,\"name\":\"Организация\"}]\n\nИндивидуальный вариант 3\nURL: http://127.0.0.1:46015/api/tasks?priority=high\nФильтры: { completed: null, priority: 'high', categoryId: null, q: '' }\nID: [4,13,16,25,34]\nПолучено задач: 5; время: 5.5 мс\n┌─────────┬────┬────────────────────────────────┬───────────┬──────────┬──────────┐\n│ (index) │ id │ title                          │ completed │ priority │ category │\n├─────────┼────┼────────────────────────────────┼───────────┼──────────┼──────────┤\n│ 0       │ 4  │ 'Подготовить модель задач'     │ false     │ 'high'   │ 'Проект' │\n│ 1       │ 13 │ 'Разобрать Promise'            │ false     │ 'high'   │ 'Учёба'  │\n│ 2       │ 16 │ 'Проверить учебный API'        │ true      │ 'high'   │ 'Проект' │\n│ 3       │ 25 │ 'Исправить обработку ошибок'   │ true      │ 'high'   │ 'Проект' │\n│ 4       │ 34 │ 'Провести рефакторинг клиента' │ false     │ 'high'   │ 'Проект' │\n└─────────┴────┴────────────────────────────────┴───────────┴──────────┴──────────┘\nКатегории: [{\"id\":1,\"name\":\"Учёба\"},{\"id\":2,\"name\":\"Проект\"},{\"id\":3,\"name\":\"Организация\"}]\n\nКонтрольная ошибка 404: Тип: http · Задача с id 999 не найдена. · HTTP 404 · Код API: TASK_NOT_FOUND\n",
+    "stderr": ""
+  },
+  "restarted": true
+}

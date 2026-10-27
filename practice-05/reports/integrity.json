@@ -1,0 +1,15 @@
+{
+  "previous_files_checked": 73,
+  "changed_previous_files": [
+    "README.md"
+  ],
+  "practice_01_to_04_unchanged": true,
+  "teacher_api_and_checks_unchanged": true,
+  "protected_sha256": {
+    "api/data.js": "ddf8b427ae63e3c0833c4e44a1b653b7ad8c8694f1d852b520f992acef9956e4",
+    "api/server.mjs": "d259e329c5fa0175835b93a1f2c49ad0ee11bce8a6d53f2511347cd9c4942108",
+    "checks/api-client.checks.js": "b73f98c13d7ea71e972bb43af586302f0cb9deefe4d6f960d9779b138a66d30c",
+    "checks/api-server.checks.js": "aaeba6c24481c186251eda0a4ce81d6511ee6e30ad23c91a6deac76c59c42d27",
+    "checks/integration.checks.js": "03ae8b00ea9642db32c265ee94480b1e405da970baee482d0a2d9f53bcf6db19"
+  }
+}

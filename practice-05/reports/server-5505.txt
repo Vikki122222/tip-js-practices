@@ -1,0 +1,8 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> tip-js-practice-05@1.0.0 start
+> node api/server.mjs
+
+Учебный API ПР5: http://127.0.0.1:5505/api
+Проверка: http://127.0.0.1:5505/api/health
+Остановка: Ctrl+C.

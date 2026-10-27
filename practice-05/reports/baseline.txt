@@ -1,0 +1,5 @@
+Исходная диагностика ДО реализации src.
+Команда npm run check:api: exit 0; Итог API: успешно 18, ошибок 0.
+Команда npm run check:client: exit 1; Итог клиента: успешно 0, ошибок 26.
+Причины отказов исходного клиента: Не реализовано: buildUrl / createApiClient / createTaskApi.
+После реализации штатные проверки не изменялись; полный успешный вывод находится в api-server.txt, api-client.txt и integration.txt.

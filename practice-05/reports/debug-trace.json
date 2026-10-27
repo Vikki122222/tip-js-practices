@@ -1,0 +1,95 @@
+{
+  "baseUrl": "http://127.0.0.1:40231/api",
+  "snapshots": [
+    {
+      "stage": "before-fetch",
+      "source": "src/api-client.js",
+      "line": 107,
+      "values": {
+        "url": "http://127.0.0.1:40231/api/tasks/25",
+        "query": {},
+        "aborted": false
+      }
+    },
+    {
+      "stage": "after-response",
+      "source": "src/api-client.js",
+      "line": 115,
+      "values": {
+        "url": "http://127.0.0.1:40231/api/tasks/25",
+        "status": 200,
+        "ok": true,
+        "contentType": "application/json; charset=utf-8"
+      }
+    },
+    {
+      "stage": "before-json",
+      "source": "src/api-client.js",
+      "line": 156,
+      "values": {
+        "url": "http://127.0.0.1:40231/api/tasks/25",
+        "status": 200,
+        "ok": true,
+        "contentType": "application/json; charset=utf-8"
+      }
+    },
+    {
+      "stage": "parsed-payload",
+      "source": "src/task-api.js",
+      "line": 103,
+      "values": {
+        "id": 25,
+        "payload": {
+          "data": {
+            "id": 25,
+            "title": "Исправить обработку ошибок",
+            "completed": true,
+            "priority": "high",
+            "categoryId": 2
+          }
+        }
+      }
+    },
+    {
+      "stage": "before-fetch",
+      "source": "src/api-client.js",
+      "line": 107,
+      "values": {
+        "url": "http://127.0.0.1:40231/api/tasks/999",
+        "query": {},
+        "aborted": false
+      }
+    },
+    {
+      "stage": "after-response",
+      "source": "src/api-client.js",
+      "line": 115,
+      "values": {
+        "url": "http://127.0.0.1:40231/api/tasks/999",
+        "status": 404,
+        "ok": false,
+        "contentType": "application/json; charset=utf-8"
+      }
+    },
+    {
+      "stage": "http-error",
+      "source": "src/api-client.js",
+      "line": 136,
+      "values": {
+        "url": "http://127.0.0.1:40231/api/tasks/999",
+        "status": 404,
+        "ok": false,
+        "contentType": "application/json; charset=utf-8",
+        "payload": {
+          "error": {
+            "code": "TASK_NOT_FOUND",
+            "message": "Задача с id 999 не найдена.",
+            "details": {
+              "id": 999
+            }
+          }
+        }
+      }
+    }
+  ]
+}
