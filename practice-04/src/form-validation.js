@@ -25,21 +25,27 @@ export function validateTaskDraft(draft, tasks, editingId = null) {
     }
   }
 
+
   let title = "";
 
+// Проверяем тип названия задачи.
+// Название обязательно должно быть строкой.
   if (typeof draft.title !== "string") {
     errors.title = "Название должно быть строкой";
   } else {
+    // Удаляем пробелы в начале и конце названия.
+    // Например, " Изучить localStorage "
+    // превращается в "Изучить localStorage".
     title = draft.title.trim();
 
+    // После удаления пробелов длина названия
+    // должна составлять от 1 до 100 символов.
+    // Если введены только пробелы, строка станет пустой.
     if (title.length < 1 || title.length > 100) {
       errors.title = "Название должно содержать от 1 до 100 символов";
     }
   }
 
-  if (!ALLOWED_PRIORITIES.has(draft.priority)) {
-    errors.priority = "Выберите приоритет low, medium или high";
-  }
 
   // Собираем все независимые ошибки, а не только первую.
   if (Object.keys(errors).length > 0) {
