@@ -96,7 +96,9 @@ export function createAppController({ api, view, validateDraft = validateTaskDra
     view.setFormTask(null);
   }
 
-  // Общая последовательность всех мутаций: блокировка, запрос, GET, разблокировка.
+// После успешного изменения повторно запрашиваем
+// задачи с сервера с сохранением текущих фильтров.
+// Поэтому завершённая задача исчезнет из выборки completed=false.
   async function mutate(operation, successMessage, afterSuccess) {
     if (destroyed || mutationPending) return false;
     mutationPending = true;
@@ -174,15 +176,30 @@ export function createAppController({ api, view, validateDraft = validateTaskDra
     );
   }
 
+
   function toggleTask(id) {
+    // Запрещаем изменение после уничтожения контроллера
+    // или во время другой операции с сервером.
     if (destroyed || mutationPending) return Promise.resolve(false);
+
+    // Находим задачу по ID в текущем списке.
     const task = tasks.find((item) => item.id === id);
+
+    // Если задача не найдена, показываем сообщение.
     if (!task) {
       view.notify("Задача отсутствует в текущем списке. Обновите данные.", "error");
       return Promise.resolve(false);
     }
-    return mutate((options) => api.setTaskCompleted(id, !task.completed, options), "Статус задачи изменён.");
+
+    // Меняем значение completed на противоположное.
+    // mutate отправит изменение на сервер через API,
+    // а после успешного PATCH повторно загрузит задачи.
+    return mutate(
+        (options) => api.setTaskCompleted(id, !task.completed, options),
+        "Статус задачи изменён."
+    );
   }
+
 
   function deleteTask(id) {
     return mutate((options) => api.deleteTask(id, options), "Задача удалена.", () => {
