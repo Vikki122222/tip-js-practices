@@ -85,16 +85,31 @@ export function createTaskApi(client) {
     throw new TypeError("Требуется клиент с методом requestJson.");
   }
 
+
   async function getTasks(filters = {}) {
+    // Проверяем и нормализуем фильтры перед запросом.
+    // Разрешены completed, priority, categoryId и q.
     const query = normalizeFilters(filters);
+
+    // Отправляем GET-запрос на сервер.
+    // Фильтры передаются через query-параметры URL.
     const payload = await client.requestJson("/tasks", { query });
+
+    // Проверяем структуру ответа и корректность задач.
     validateCollection(payload, isTask, "tasks");
+
+    // Проверяем наличие информации о фильтрах в meta.
     if (!isRecord(payload.meta.filters)) {
       throw invalidResponse("В meta отсутствует объект filters.");
     }
+
+    // Возвращаем задачи и метаданные ответа сервера.
     return { tasks: payload.data, meta: payload.meta };
   }
 
+    // Получаем одну задачу с сервера по её идентификатору.
+    // Если задача не существует, HTTP-клиент выбросит ApiError.
+    // Например, для id = 999 сервер вернёт HTTP 404.
   async function getTaskById(id) {
     if (!isPositiveSafeInteger(id)) {
       throw new TypeError("id должен быть положительным безопасным целым.");
