@@ -151,10 +151,18 @@ export function createTaskApi(client) {
     return readTask(payload, id);
   }
 
+
+// Изменяет статус выполнения конкретной задачи.
+// completed принимает только true или false.
   async function setTaskCompleted(id, completed, options = {}) {
     if (typeof completed !== "boolean") throw new TypeError("completed должен быть boolean.");
+
+    // Передаём изменение статуса в updateTask.
+    // Эта функция отправляет PATCH /api/tasks/:id
+    // с JSON-телом { completed: true/false }.
     return updateTask(id, { completed }, options);
   }
+
 
   async function deleteTask(id, { signal } = {}) {
     checkId(id);
