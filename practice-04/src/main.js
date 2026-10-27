@@ -44,6 +44,8 @@ const storageKey = isCheckRun
 // не должен оставлять страницу без диагностического сообщения.
 let loaded;
 try {
+  // При открытии страницы пытаемся восстановить задачи из localStorage.
+  // Если сохранённых данных нет, используем исходный список.
   loaded = loadTasks(window.localStorage, storageKey, initialTasks);
 } catch (error) {
   loaded = {
@@ -167,6 +169,8 @@ function persistCurrentTasks(successMessage) {
   let saved;
 
   try {
+    // Сохраняем актуальный список задач в localStorage.
+    // Данные записываются в формате JSON для восстановления после перезагрузки.
     saved = saveTasks(window.localStorage, storageKey, currentTasks);
   } catch {
     saved = {
