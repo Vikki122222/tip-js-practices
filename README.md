@@ -16,3 +16,4 @@
 - [Практическая работа № 4](./practice-04/README.md)
 - [Практическая работа № 5](./practice-05/README.md)
 - [Практическая работа № 6](./practice-06/README.md)
+- [Практическая работа № 7](./practice-07/README.md)
